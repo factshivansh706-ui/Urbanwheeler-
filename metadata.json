@@ -1,0 +1,6 @@
+{
+  "name": "Urban Wheels",
+  "description": "Book reliable taxis or rent premium two-wheelers quickly, safely, and affordably across Uttarkashi, Uttarakhand. Premium mobility platform inspired by Rapido and Uber.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
