@@ -191,7 +191,7 @@ export default function Header({ onBookClick }: HeaderProps) {
               }}
               className="w-full btn-yellow-premium py-3 rounded-xl font-extrabold tracking-wider text-xs uppercase text-center shadow-lg transition-all flex items-center justify-center gap-1.5"
             >
-              <span>Book Ride / Rental</span>
+              <span>Book Your Rental</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </motion.div>

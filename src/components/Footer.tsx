@@ -26,7 +26,7 @@ export default function Footer() {
             </div>
             
             <p className="text-xs text-zinc-400 leading-relaxed max-w-sm">
-              Urban Wheels is Uttarkashi's premier mobility network. Book reliable local mountain taxis or rent premium self-drive two-wheelers (Royal Enfield bikes, Activa scooters) to explore the majestic Himalayas.
+              Urban Wheels is Uttarkashi's premier self-drive mobility network. Rent premium scooties and bikes (Honda Activa, Suzuki Access, Royal Enfield adventure tourers) starting at budget-friendly rates to explore the majestic Himalayas.
             </p>
 
             <div className="space-y-2 pt-2 text-xs text-zinc-400">
@@ -72,7 +72,7 @@ export default function Footer() {
 
               {/* WhatsApp Chat */}
               <a
-                href="https://wa.me/917818971990?text=Hello%20Urban%20Wheels!%20I%20would%20like%20to%20book%20a%20ride/rental."
+                href="https://wa.me/917818971990?text=Hello%20Urban%20Wheels!%20I%20would%20like%20to%20rent%20a%20scooty/bike."
                 target="_blank"
                 rel="noopener noreferrer"
                 id="footer-whatsapp"

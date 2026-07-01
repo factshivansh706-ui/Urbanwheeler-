@@ -16,7 +16,7 @@ export default function Testimonials() {
             Trusted by Thousands of Commuters
           </h2>
           <p className="text-sm text-zinc-600 mt-4 font-medium">
-            Hear from our everyday users about their commute experiences, budget savings, and safety ratings with Urban Wheels.
+            Hear from our everyday users about their travel experiences, budget savings, and safety ratings with Urban Wheels.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export default function Testimonials() {
             }}
             className="bg-black hover:bg-zinc-900 text-white font-extrabold px-6 py-3 rounded-xl shadow-xl transition-all text-xs uppercase tracking-wider shrink-0 cursor-pointer"
           >
-            Schedule Your Ride Now
+            Schedule Your Rental Now
           </button>
         </div>
 

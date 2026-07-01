@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MapPin, Navigation, Calendar, Clock, Users, ArrowRightLeft, Search, Check, Info, Bike, Car, Loader2 } from 'lucide-react';
+import { MapPin, Navigation, Calendar, Clock, Users, ArrowRightLeft, Search, Check, Info, Bike, Car, Loader2, User, Phone, ArrowRight } from 'lucide-react';
 import { BookingState, LocationSuggestion } from '../types';
 import { popularDestinations } from '../data';
 import { motion, AnimatePresence } from 'motion/react';
@@ -150,41 +150,48 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
         <h3 className="text-lg font-black text-zinc-900 tracking-tight flex items-center gap-2">
           <span className="w-2.5 h-5 bg-yellow-400 rounded-full inline-block" />
-          Plan Your Mobility
+          Plan Your Scooter / Bike Rental
         </h3>
-        
-        {/* Toggle Option: Taxi / Two-Wheeler Rental */}
-        <div className="bg-slate-200/50 p-1 rounded-xl border border-white/60 flex items-center gap-1 shadow-inner self-start sm:self-auto">
-          <button
-            type="button"
-            id="toggle-taxi"
-            onClick={() => onChange({ serviceType: 'taxi', selectedRideId: null })}
-            className={`px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
-              booking.serviceType === 'taxi'
-                ? 'bg-yellow-400 text-black shadow-md'
-                : 'text-zinc-600 hover:text-zinc-900'
-            }`}
-          >
-            <Car className="w-3.5 h-3.5" />
-            <span>Taxi Booking</span>
-          </button>
-          <button
-            type="button"
-            id="toggle-rental"
-            onClick={() => onChange({ serviceType: 'rental', selectedRideId: null, passengers: 1 })}
-            className={`px-3 py-1.5 rounded-lg text-xs font-extrabold transition-all cursor-pointer flex items-center gap-1.5 ${
-              booking.serviceType === 'rental'
-                ? 'bg-yellow-400 text-black shadow-md'
-                : 'text-zinc-600 hover:text-zinc-900'
-            }`}
-          >
-            <Bike className="w-3.5 h-3.5" />
-            <span>Two-Wheeler Rental</span>
-          </button>
-        </div>
       </div>
 
       <div className="space-y-4">
+        {/* Customer Details */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="flex items-center glass-input rounded-xl px-3.5 py-3 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
+            <User className="w-5 h-5 text-yellow-500 shrink-0 mr-3" />
+            <div className="flex-1">
+              <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="input-name"
+                value={booking.customerName}
+                onChange={(e) => onChange({ customerName: e.target.value })}
+                placeholder="Enter your full name"
+                className="w-full bg-transparent border-0 p-0 text-zinc-800 text-sm font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center glass-input rounded-xl px-3.5 py-3 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
+            <Phone className="w-5 h-5 text-yellow-500 shrink-0 mr-3" />
+            <div className="flex-1">
+              <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+                Mobile Number
+              </label>
+              <input
+                type="tel"
+                id="input-mobile"
+                value={booking.customerMobile}
+                onChange={(e) => onChange({ customerMobile: e.target.value })}
+                placeholder="Enter 10-digit number"
+                className="w-full bg-transparent border-0 p-0 text-zinc-800 text-sm font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Pickup & Destination block with relative line */}
         <div className="relative">
           {/* Vertical connecting line */}
@@ -371,12 +378,10 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
             </div>
             <div>
               <span className="block text-xs font-black text-zinc-800">
-                {booking.serviceType === 'rental' ? 'Rental Duration (Days)' : 'Number of Passengers'}
+                Rental Duration (Days)
               </span>
               <span className="block text-[10px] text-zinc-500 font-medium">
-                {booking.serviceType === 'rental' 
-                  ? 'Longer rental discount automatically applies' 
-                  : 'Up to 7 passengers for Mountain Cruiser SUVs'}
+                Longer rental discount automatically applies
               </span>
             </div>
           </div>
@@ -396,7 +401,7 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
             <button
               type="button"
               id="passenger-plus"
-              onClick={() => onChange({ passengers: Math.min(booking.serviceType === 'rental' ? 30 : 7, booking.passengers + 1) })}
+              onClick={() => onChange({ passengers: Math.min(30, booking.passengers + 1) })}
               className="w-8 h-8 rounded-lg bg-slate-200/60 hover:bg-slate-300/60 text-zinc-700 hover:text-black flex items-center justify-center font-black text-lg cursor-pointer transition-all"
             >
               +
@@ -404,34 +409,24 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
           </div>
         </div>
 
-        {/* Help banner for self-drive or mountains */}
-        {booking.serviceType === 'rental' ? (
-          <div className="bg-amber-500/10 border border-amber-500/20 text-amber-800 rounded-xl p-3 flex gap-2.5 items-start text-[11px] leading-normal animate-fade-in shadow-sm">
-            <Info className="w-4.5 h-4.5 text-amber-600 shrink-0 mt-0.5" />
-            <div>
-              <span className="font-extrabold block text-amber-900">Self-Drive Policy Active</span>
-              Includes 2 sanitized helmets, toolkits, and dynamic roadside assistance across Uttarakhand highways. Valid DL & Aadhaar required during pick-up.
-            </div>
+        {/* Help banner for self-drive */}
+        <div className="bg-amber-500/10 border border-amber-500/20 text-amber-800 rounded-xl p-3 flex gap-2.5 items-start text-[11px] leading-normal animate-fade-in shadow-sm">
+          <Info className="w-4.5 h-4.5 text-amber-600 shrink-0 mt-0.5" />
+          <div>
+            <span className="font-extrabold block text-amber-900">Self-Drive Policy Active</span>
+            Includes 2 sanitized helmets, toolkits, and dynamic roadside assistance across Uttarakhand highways. Valid DL & Aadhaar required during pick-up.
           </div>
-        ) : (
-          <div className="bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 rounded-xl p-3 flex gap-2.5 items-start text-[11px] leading-normal animate-fade-in shadow-sm">
-            <Info className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
-            <div>
-              <span className="font-extrabold block text-emerald-800">Mountain Driver Protection</span>
-              All trips are matched with experienced, native mountain captains certified for Himalayan terrains and overnight travel.
-            </div>
-          </div>
-        )}
+        </div>
 
-        {/* Search button */}
+        {/* Book Scooter Now button */}
         <button
           type="button"
           id="search-rides-btn"
           onClick={onSearch}
-          className="w-full btn-yellow-premium py-3.5 px-4 rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer mt-2 text-sm"
+          className="w-full btn-yellow-premium py-4 px-4 rounded-xl transition-all flex items-center justify-center gap-2.5 cursor-pointer mt-2 text-sm font-black uppercase tracking-wider shadow-lg shadow-yellow-500/15"
         >
-          <Search className="w-4 h-4 stroke-[2.5]" />
-          <span>Find Available {booking.serviceType === 'rental' ? 'Rentals' : 'Cabs'}</span>
+          <span>Book Scooter Now</span>
+          <ArrowRight className="w-4 h-4 stroke-[3]" />
         </button>
       </div>
     </div>

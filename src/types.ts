@@ -24,6 +24,8 @@ export interface BookingState {
   serviceType: 'taxi' | 'rental';
   passengers: number;
   selectedRideId: string | null;
+  customerName: string;
+  customerMobile: string;
 }
 
 export interface Testimonial {

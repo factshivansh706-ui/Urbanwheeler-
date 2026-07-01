@@ -7,34 +7,24 @@ import {
 export default function Features() {
   const services = [
     {
-      icon: <Car className="w-6 h-6 text-yellow-600" />,
-      title: 'Taxi Booking',
-      description: 'On-demand mountain cabs with verified local drivers for safe travel around Uttarkashi.',
-    },
-    {
-      icon: <Compass className="w-6 h-6 text-yellow-600" />,
-      title: 'Airport Transfers',
-      description: 'Guaranteed, reliable taxi connections between Jolly Grant Airport Dehradun and Uttarkashi.',
-    },
-    {
-      icon: <Navigation className="w-6 h-6 text-yellow-600" />,
-      title: 'Local City Rides',
-      description: 'Quick rides connecting Joshiyara, Gyansu, Maneri Dam, and core Uttarkashi market zones.',
-    },
-    {
-      icon: <MapPinCheck className="w-6 h-6 text-yellow-600" />,
-      title: 'Outstation Trips',
-      description: 'Dedicated multi-day long-distance tours for Gangotri, Yamunotri, Dehradun, and Rishikesh pilgrimages.',
+      icon: <Bike className="w-6 h-6 text-yellow-600" />,
+      title: 'Scooty Rental',
+      description: 'Affordable self-drive Honda Activas starting at just ₹800/day. Lightweight, reliable, and perfect for solo travelers, couples, and local commutes.',
     },
     {
       icon: <Bike className="w-6 h-6 text-yellow-600" />,
-      title: 'Bike Rentals',
-      description: 'Rent heavy-duty tourers like Royal Enfield Himalayan to ride across winding mountain roads.',
+      title: 'Bike Rental',
+      description: 'Rent premium adventure motorbikes like the Royal Enfield Himalayan to comfortably ride across Uttarkashi’s high mountain roads.',
     },
     {
-      icon: <Bike className="w-6 h-6 text-yellow-600" />,
-      title: 'Scooter Rentals',
-      description: 'Affordable self-drive Honda Activas starting at just ₹450/day. Perfect for solo travellers and couples.',
+      icon: <Shield className="w-6 h-6 text-yellow-600" />,
+      title: 'Helmet Included',
+      description: 'We prioritize your safety. Every rental comes with sanitized, certified high-quality helmets and required tools at no extra charge.',
+    },
+    {
+      icon: <Heart className="w-6 h-6 text-yellow-600" />,
+      title: '24/7 Support',
+      description: 'Enjoy roadside breakdown assistance, local helpline backup, and instant support wherever you ride across Uttarakhand.',
     },
   ];
 
@@ -42,60 +32,45 @@ export default function Features() {
     {
       icon: <DollarSign className="w-5 h-5 text-yellow-600" />,
       title: 'Affordable Pricing',
-      description: 'Completely transparent flat rate charts. Zero tourist peak-pricing or hidden convenience charges.',
-    },
-    {
-      icon: <UserCheck className="w-5 h-5 text-yellow-600" />,
-      title: 'Professional Drivers',
-      description: 'Native mountain captains trained in commercial hill driving and landslide safety protocols.',
+      description: 'Completely transparent rate plans. Scooty at ₹800/day and Special Offer at ₹1000. Zero hidden peak surge charges.',
     },
     {
       icon: <Sparkles className="w-5 h-5 text-yellow-600" />,
-      title: 'Clean Vehicles',
-      description: 'All self-drive scooters and cabs undergo rigorous weekly sanitization and mechanical checks.',
+      title: 'Serviced & Clean',
+      description: 'Every self-drive scooter and bike undergoes meticulous mechanical tuning, tire checks, and sanitization before handoff.',
     },
     {
       icon: <Calendar className="w-5 h-5 text-yellow-600" />,
-      title: 'Easy Booking',
-      description: 'Dynamic and seamless online booking. Reserve your cab or motorbike in less than 30 seconds.',
-    },
-    {
-      icon: <Zap className="w-5 h-5 text-yellow-600" />,
-      title: 'Fast Pickup',
-      description: 'Fleet points stationed strategically around Joshiyara Ward 08 ensuring pickups under 10 minutes.',
+      title: 'Easy Reservation',
+      description: 'Dynamic and seamless online booking. Reserve your scooty or bike in less than 30 seconds with instant confirmation.',
     },
     {
       icon: <Shield className="w-5 h-5 text-yellow-600" />,
-      title: 'Safe & Reliable',
-      description: 'Active GPS tracking, secure digital OTP handovers, and emergency SOS backup support.',
-    },
-    {
-      icon: <Heart className="w-5 h-5 text-yellow-600" />,
-      title: '24/7 Customer Support',
-      description: 'Dedicated support helpline working day and night to assist tourists, pilgrims, and locals.',
+      title: 'Safe & Verified',
+      description: 'Equipped with basic GPS trackers, comprehensive security guidelines, and emergency local backup desk support.',
     },
   ];
 
   const steps = [
     {
       number: '01',
-      title: 'Choose Service',
-      description: 'Select either a high-grade taxi or rent a self-drive two-wheeler from our mobile booking panel.',
+      title: 'Select Two-Wheeler',
+      description: 'Choose from our clean fleet of Honda Activas, Suzuki Access scooties, or Royal Enfield mountain bikes.',
     },
     {
       number: '02',
-      title: 'Enter Route details',
-      description: 'Input your pickup point and drop destination. You can choose from our popular list of pilgrimage hot spots.',
+      title: 'Set Rental Duration',
+      description: 'Input your pickup hub point and total duration in days. Discounts are automatically applied for longer rentals.',
     },
     {
       number: '03',
       title: 'Confirm Booking',
-      description: 'Verify the vehicle details, capacity limit, and estimated flat fare before clicking "Confirm".',
+      description: 'Verify your rental dates, price, and self-drive terms, then click "Confirm Rental Booking" to receive your secure OTP.',
     },
     {
       number: '04',
-      title: 'Enjoy Your Ride',
-      description: 'Receive your secure OTP and enjoy a comfortable journey with active GPS safety tracking.',
+      title: 'Collect & Cruise',
+      description: 'Share your OTP at our Joshiyara Central Hub, collect your keys and sanitized helmets, and start exploring!',
     },
   ];
 
@@ -103,26 +78,26 @@ export default function Features() {
     {
       icon: <Navigation className="w-6 h-6 text-black" />,
       bg: 'bg-yellow-400 shadow-md',
-      title: 'Live Hill Tracking',
-      description: 'Share your live route coordinates with emergency contacts and monitor your journey real-time.',
+      title: 'Live GPS Navigation',
+      description: 'Seamlessly follow offline and online route guides through Uttarkashi with reliable digital navigation paths.',
     },
     {
       icon: <DollarSign className="w-6 h-6 text-yellow-600" />,
       bg: 'bg-white/80 border border-slate-200/50 shadow-sm',
-      title: 'Cashless Payments',
-      description: 'Pay securely using UPI (GPay, PhonePe, Paytm), cards, net banking, or direct cash with drivers.',
+      title: 'Cashless UPI Payments',
+      description: 'Pay quickly and securely using GPay, PhonePe, Paytm, credit/debit cards, or net banking.',
     },
     {
-      icon: <Star className="w-6 h-6 text-yellow-600" />,
+      icon: <Sparkles className="w-6 h-6 text-yellow-600" />,
       bg: 'bg-white/80 border border-slate-200/50 shadow-sm',
-      title: 'Driver Ratings',
-      description: 'Review your captain’s background and passenger pilgrim comments prior to stepping into the vehicle.',
+      title: 'Weekly Sanitization',
+      description: 'Every two-wheeler is meticulously steam washed and disinfected before every booking cycle.',
     },
     {
       icon: <Shield className="w-6 h-6 text-black" />,
       bg: 'bg-yellow-400 ring-4 ring-yellow-400/20 shadow-lg animate-pulse',
-      title: 'SOS Safety Alarm',
-      description: 'An active single-tap emergency alarm that immediately alerts our Joshiyara desk for backup dispatch.',
+      title: 'Emergency SOS Call',
+      description: 'A single-tap emergency helpline trigger immediately alerts our Joshiyara central support team for rapid backup.',
     },
   ];
 
@@ -139,10 +114,10 @@ export default function Features() {
               Premium Uttarakhand Services
             </span>
             <h2 className="text-3xl md:text-4xl font-black tracking-tight mt-2 text-white">
-              Our Professional Mobility Offerings
+              Our Premium Rental Offerings
             </h2>
             <p className="text-xs md:text-sm text-zinc-400 mt-4 leading-relaxed font-semibold">
-              From reliable local cabs to heavy-duty adventure tourer motorbikes, we have everything you need to navigate Uttarkashi's picturesque mountain slopes safely and comfortably.
+              From lightweight gearless scooties to heavy-duty adventure tourer motorbikes, we have everything you need to navigate Uttarkashi's picturesque mountain paths safely and comfortably.
             </p>
           </div>
 

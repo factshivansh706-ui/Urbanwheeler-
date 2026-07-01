@@ -22,9 +22,11 @@ export default function App() {
     destinationLatLng: [30.7268, 78.4335],
     date: new Date(Date.now() + 86400000).toISOString().split('T')[0], // Tomorrow
     time: '09:30',
-    isShared: false,
+    serviceType: 'rental',
     passengers: 1,
-    selectedRideId: null,
+    selectedRideId: 'scooter_rental',
+    customerName: '',
+    customerMobile: '',
   });
 
   // Active simulated ride state
@@ -42,8 +44,7 @@ export default function App() {
 
   const handleSearchRides = () => {
     // Automatically pre-select recommended option when searching
-    const defaultSelection = booking.isShared ? 'taxi_local' : 'bike_rental';
-    setBooking((prev) => ({ ...prev, selectedRideId: defaultSelection }));
+    setBooking((prev) => ({ ...prev, selectedRideId: 'scooter_rental' }));
     
     // Smooth scroll to the fleet options list
     setTimeout(() => {
@@ -59,19 +60,44 @@ export default function App() {
   };
 
   const handleConfirmBooking = () => {
+    if (!booking.customerName.trim()) {
+      alert("Please enter your Name to proceed.");
+      return;
+    }
+    if (!booking.customerMobile.trim()) {
+      alert("Please enter your Mobile Number.");
+      return;
+    }
+    if (!booking.pickup.trim()) {
+      alert("Please enter a Pickup Location.");
+      return;
+    }
+    if (!booking.date) {
+      alert("Please select a Rental Date.");
+      return;
+    }
+    if (!booking.time) {
+      alert("Please select a Pickup Time.");
+      return;
+    }
+    if (!booking.selectedRideId) {
+      alert("Please select a Scooter or Bike model.");
+      return;
+    }
+
     const chosenOption = rideOptions.find((o) => o.id === booking.selectedRideId) || null;
     
     setActiveRide({
-      id: Math.random().toString(36).substr(2, 9),
-      status: 'searching',
+      id: "UW-" + Math.floor(100000 + Math.random() * 900000).toString(),
+      status: 'completed',
       pickup: booking.pickup,
       destination: booking.destination,
-      isShared: booking.isShared,
+      serviceType: 'rental',
       passengers: booking.passengers,
       rideOption: chosenOption,
       driver: null,
-      otp: '----',
-      progress: 0,
+      otp: '',
+      progress: 100,
     });
 
     // Scroll up to the map booking zone to see the live matching!
@@ -113,18 +139,18 @@ export default function App() {
             {/* Tagline */}
             <div className="inline-flex items-center gap-2 glass-premium px-4 py-2 rounded-full text-xs font-bold text-yellow-600 animate-fade-in shadow-sm">
               <Sparkles className="w-4 h-4 fill-yellow-500 stroke-yellow-500" />
-              <span>Premium Tech-Enabled Commutes</span>
+              <span>Premium Two-Wheeler Rentals</span>
             </div>
 
             {/* Main Headline */}
-            <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-zinc-900 tracking-tight leading-[1.1]">
-              Ride Smarter with <br className="hidden sm:block" />
-              <span className="text-yellow-600 bg-yellow-400/20 px-4 py-1 rounded-2xl font-black">Urban Wheels</span>
+            <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-black text-zinc-900 tracking-tight leading-[1.15]">
+              Rent a Scooty in Uttarkashi <br className="hidden sm:block" />
+              <span className="text-yellow-600 bg-yellow-400/20 px-4 py-1.5 rounded-2xl font-black inline-block mt-2">Affordable, Safe & Reliable</span>
             </h1>
 
             {/* Sub-Headline */}
             <p className="text-sm md:text-base text-zinc-600 max-w-2xl mx-auto leading-relaxed font-semibold">
-              Book reliable taxis or rent two-wheelers quickly, safely, and affordably across Uttarkashi.
+              Explore the Himalayas on your own terms. Book high-quality gearless scooties or adventure tourer motorbikes quickly, safely, and affordably across Uttarkashi.
             </p>
 
             {/* Active Tickers to showcase premium active product */}
@@ -132,21 +158,21 @@ export default function App() {
               <div className="flex items-center gap-2.5">
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-xs font-bold text-zinc-600">
-                  <span className="text-zinc-900 font-extrabold">1,420+</span> Captains Online
+                  <span className="text-zinc-900 font-extrabold">120+</span> Scooties & Bikes Ready
                 </span>
               </div>
               <span className="hidden sm:inline text-zinc-300">•</span>
               <div className="flex items-center gap-2.5">
                 <span className="text-yellow-600 text-xs">⚡</span>
                 <span className="text-xs font-bold text-zinc-600">
-                  <span className="text-zinc-900 font-extrabold">42,800+</span> Weekly Shared Seats
+                  <span className="text-zinc-900 font-extrabold">10,000+</span> Satisfied Riders
                 </span>
               </div>
               <span className="hidden sm:inline text-zinc-300">•</span>
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="w-4.5 h-4.5 text-emerald-600" />
                 <span className="text-xs font-bold text-zinc-600">
-                  100% Insured Rides
+                  100% Insured Fleet
                 </span>
               </div>
             </div>
@@ -195,7 +221,7 @@ export default function App() {
                   >
                     <ActiveRideStatus
                       activeRide={activeRide}
-                      onUpdate={handleActiveRideUpdate}
+                      booking={booking}
                       onCancel={handleCancelActiveRide}
                     />
                   </motion.div>
@@ -210,7 +236,7 @@ export default function App() {
                     <BookingForm
                       booking={booking}
                       onChange={handleBookingChange}
-                      onSearch={handleSearchRides}
+                      onSearch={handleConfirmBooking}
                     />
                   </motion.div>
                 )}
@@ -261,10 +287,10 @@ export default function App() {
               One-Click Routing
             </span>
             <h3 className="text-lg font-black text-zinc-900 tracking-tight mt-0.5">
-              Popular Commutes In Your City
+              Popular Rental Destinations
             </h3>
             <p className="text-xs text-zinc-500 mt-1">
-              Select any trending drop-off landmark below to instantly update route calculations.
+              Select any trending explore landmark below to instantly update route calculations.
             </p>
           </div>
 
@@ -343,12 +369,12 @@ export default function App() {
                     <span className="block text-[6px] font-bold text-zinc-500 uppercase tracking-widest">Active Scooter Rental</span>
                     <div className="flex items-center justify-between">
                       <span className="text-[8px] font-black text-white">Gangotri Temple</span>
-                      <span className="text-[9px] font-bold text-yellow-400">₹450</span>
+                      <span className="text-[9px] font-bold text-yellow-400">₹800</span>
                     </div>
                     <div className="w-full h-1 bg-zinc-950 rounded-full overflow-hidden">
                       <div className="h-full bg-yellow-400 w-3/5" />
                     </div>
-                    <span className="block text-[5px] text-zinc-400">Captain Devendra Rawat handoff ready</span>
+                    <span className="block text-[5px] text-zinc-400">Joshiyara Hub handoff ready</span>
                   </div>
 
                   <div className="bg-yellow-400 text-black py-2 rounded-xl text-[9px] font-black text-center tracking-wide uppercase">
@@ -361,13 +387,13 @@ export default function App() {
             {/* Copy content on right */}
             <div className="md:col-span-7 space-y-6 order-1 md:order-2">
               <span className="text-xs font-black tracking-widest text-yellow-400 uppercase">
-                Download the commuter app
+                Download the rental app
               </span>
               <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
-                Unlock Easy Himalayan Commutes Everywhere
+                Unlock Easy Himalayan Travel Everywhere
               </h2>
               <p className="text-xs md:text-sm text-zinc-400 leading-relaxed">
-                Scan, tap, and book rides or rent motorbikes instantly on our companion app. Enjoy quick UPI checkouts, active GPS tracking, and premium emergency SOS backup services.
+                Scan, tap, and rent scooties or motorbikes instantly on our companion app. Enjoy quick UPI checkouts, active GPS navigation, and premium emergency SOS backup services.
               </p>
 
               {/* Download Buttons */}
