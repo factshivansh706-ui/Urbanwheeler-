@@ -32,45 +32,45 @@ export default function Features() {
     {
       icon: <DollarSign className="w-5 h-5 text-yellow-600" />,
       title: 'Affordable Pricing',
-      description: 'Completely transparent rate plans. Scooty at ₹800/day and Special Offer at ₹1000. Zero hidden peak surge charges.',
+      description: 'Completely transparent rate plans. Day Rental at ₹800/day and 24-Hour Special Package at ₹1000. Zero hidden peak surge charges.',
     },
     {
       icon: <Sparkles className="w-5 h-5 text-yellow-600" />,
       title: 'Serviced & Clean',
-      description: 'Every self-drive scooter and bike undergoes meticulous mechanical tuning, tire checks, and sanitization before handoff.',
+      description: 'Every self-drive Honda Activa 125 undergoes meticulous mechanical tuning, safety checks, and full sanitization before handoff.',
     },
     {
       icon: <Calendar className="w-5 h-5 text-yellow-600" />,
       title: 'Easy Reservation',
-      description: 'Dynamic and seamless online booking. Reserve your scooty or bike in less than 30 seconds with instant confirmation.',
+      description: 'Dynamic and seamless online booking. Reserve your Honda Activa 125 in less than 30 seconds with instant confirmation.',
     },
     {
       icon: <Shield className="w-5 h-5 text-yellow-600" />,
       title: 'Safe & Verified',
-      description: 'Equipped with basic GPS trackers, comprehensive security guidelines, and emergency local backup desk support.',
+      description: 'Equipped with robust security guidelines, dual safety helmets, and emergency local backup desk support.',
     },
   ];
 
   const steps = [
     {
       number: '01',
-      title: 'Select Two-Wheeler',
-      description: 'Choose from our clean fleet of Honda Activas, Suzuki Access scooties, or Royal Enfield mountain bikes.',
+      title: 'Select Rental Plan',
+      description: 'Choose between the convenient Day Rental (₹800) or the full 24-Hour Special Package (₹1000) for your Honda Activa 125.',
     },
     {
       number: '02',
-      title: 'Set Rental Duration',
-      description: 'Input your pickup hub point and total duration in days. Discounts are automatically applied for longer rentals.',
+      title: 'Enter Details',
+      description: 'Provide your Name, Mobile Number, preferred Pickup Hub Location, Date, and Time on our booking form.',
     },
     {
       number: '03',
-      title: 'Confirm Booking',
-      description: 'Verify your rental dates, price, and self-drive terms, then click "Confirm Rental Booking" to receive your secure OTP.',
+      title: 'Confirm Instantly',
+      description: 'Click "Book Scooter Now" to immediately confirm your reservation and generate your custom Booking ID.',
     },
     {
       number: '04',
-      title: 'Collect & Cruise',
-      description: 'Share your OTP at our Joshiyara Central Hub, collect your keys and sanitized helmets, and start exploring!',
+      title: 'WhatsApp or Call Us',
+      description: 'Call or WhatsApp us on +91 7818971990 to coordinate your collection, pick up your helmets, and start exploring!',
     },
   ];
 
@@ -117,7 +117,7 @@ export default function Features() {
               Our Premium Rental Offerings
             </h2>
             <p className="text-xs md:text-sm text-zinc-400 mt-4 leading-relaxed font-semibold">
-              From lightweight gearless scooties to heavy-duty adventure tourer motorbikes, we have everything you need to navigate Uttarkashi's picturesque mountain paths safely and comfortably.
+              We focus on a single, high-quality, and incredibly reliable vehicle: the Honda Activa 125. Perfect for navigating Uttarkashi's picturesque mountain paths safely and comfortably.
             </p>
           </div>
 
@@ -197,7 +197,7 @@ export default function Features() {
               Why Choose Urban Wheels
             </h2>
             <p className="text-sm text-zinc-600 mt-4 leading-relaxed font-medium">
-              We are redefining Himalayan mobility by prioritizing professional safety, flat fixed rates, and sanitized self-drive motorbikes.
+              We are redefining Himalayan mobility by prioritizing professional safety, flat fixed rates, and a meticulously maintained fleet of Honda Activa 125 scooties.
             </p>
           </div>
 

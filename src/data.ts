@@ -2,36 +2,26 @@ import { RideOption, Testimonial, FAQItem, LocationSuggestion } from './types';
 
 export const rideOptions: RideOption[] = [
   {
-    id: 'scooter_rental',
+    id: 'activa_day_rental',
     type: 'scooter_rental',
     category: 'rental',
-    name: 'Scooty Rental',
-    description: 'Honda Activa 6G / Suzuki Access. Lightweight & gearless. Perfect for exploring Uttarkashi town temples and surrounding mountain pathways.',
+    name: 'Honda Activa 125 (Day Rental)',
+    description: 'Daytime exploration plan. Lightweight, gearless, and fuel-efficient scooter. Perfect for local temple visits and daytime sightseeing in Uttarkashi.',
     basePrice: 800, // Daily scooty rental rate
     capacity: 2,
     etaMinutes: 0,
-    popular: true,
+    popular: false,
   },
   {
-    id: 'special_offer',
+    id: 'activa_24h_special',
     type: 'scooter_rental',
     category: 'rental',
-    name: 'Special Offer: 24 Hours Rental',
-    description: '24 Hours Rental – ₹1000 (Special Discount Package) including extra helmet, toolkit, and local route maps.',
+    name: 'Honda Activa 125 (24H Special Package)',
+    description: 'Full 24-hour flexibility. Over-night plan, includes extra helmet, emergency toolkit, and local route maps for maximum travel freedom.',
     basePrice: 1000, // Special package rate
     capacity: 2,
     etaMinutes: 0,
     popular: true,
-  },
-  {
-    id: 'bike_rental',
-    type: 'bike_rental',
-    category: 'rental',
-    name: 'Bike Rental (Adventure Tourer)',
-    description: 'Royal Enfield Himalayan / Bullet. Built for rugged Himalayan passes. High torque, dual-channel ABS, and spacious luggage racks.',
-    basePrice: 1200, // Daily adventure bike rate
-    capacity: 2,
-    etaMinutes: 0,
   },
 ];
 
@@ -67,12 +57,12 @@ export const whyChooseUs = [
   {
     id: 'affordable',
     title: 'Affordable Pricing',
-    description: 'Scooty rentals starting at just ₹800/day, and our Special 24 Hours package for only ₹1000. Flat transparent rates.',
+    description: 'Honda Activa 125 rentals starting at just ₹800 for the Day Rental, and only ₹1000 for our 24-Hour Special Package. Flat, transparent rates.',
   },
   {
     id: 'vehicles',
-    title: 'Premium Fleet',
-    description: 'Latest model Honda Activas, Suzuki Access scooties, and heavy Royal Enfields, regularly serviced and sanitised.',
+    title: 'Exclusive Honda Activa 125',
+    description: 'We maintain a highly specialized fleet of premium, powerful, and fuel-efficient Honda Activa 125 scooties, serviced regularly for safety.',
   },
   {
     id: 'helmets',
@@ -82,7 +72,7 @@ export const whyChooseUs = [
   {
     id: 'booking',
     title: 'Easy Online Booking',
-    description: 'Seamless online reservation system. Book and pick up your scooter or bike at our Joshiyara hub in minutes.',
+    description: 'Seamless online reservation system. Book and pick up your scooter at our Joshiyara hub in minutes.',
   },
   {
     id: 'pickup',
@@ -115,7 +105,7 @@ export const appFeatures = [
   {
     id: 'sanitized',
     title: 'Vehicle Sanitization',
-    description: 'Every scooter and bike is thoroughly washed, sanitized, and inspected between every rental cycle.',
+    description: 'Every scooter is thoroughly washed, sanitized, and inspected between every rental cycle.',
   },
   {
     id: 'sos',
@@ -131,8 +121,8 @@ export const testimonials: Testimonial[] = [
     role: 'Local Trekking Guide',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
     rating: 5,
-    comment: 'Rented the Royal Enfield Himalayan for my solo ride to Harsil Valley. The bike was in absolutely flawless mechanical condition. Extremely smooth handoff near Joshiyara bridge!',
-    rideType: 'Bike Rental',
+    comment: 'Rented the Honda Activa 125 for my commute around Uttarkashi and Joshiyara. The scooty was in pristine mechanical condition. Extremely smooth handoff near the CSC shop!',
+    rideType: 'Honda Activa 125',
   },
   {
     id: '2',
@@ -140,8 +130,8 @@ export const testimonials: Testimonial[] = [
     role: 'Solo Traveler',
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
     rating: 5,
-    comment: 'Rented a scooty for 3 days to visit Kashi Vishwanath temple and local sightseeing points. It was an absolute breeze to handle, lightweight, and incredibly budget-friendly at ₹800/day!',
-    rideType: 'Scooty Rental',
+    comment: 'Rented a scooty for 3 days to visit local sightseeing points. The Honda Activa 125 is an absolute breeze to handle, lightweight, and incredibly budget-friendly at ₹800/day!',
+    rideType: 'Honda Activa 125',
   },
   {
     id: '3',
@@ -149,8 +139,8 @@ export const testimonials: Testimonial[] = [
     role: 'Pilgrim',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
     rating: 4.9,
-    comment: 'Took the 24 Hours Special Discount Package for ₹1000. They delivered the scooter directly to my hotel in Joshiyara, along with two perfectly clean helmets. Super high recommended!',
-    rideType: 'Special Offer',
+    comment: 'Took the 24 Hours Special Discount Package for ₹1000. They delivered the scooter directly to my hotel in Joshiyara, along with two perfectly clean helmets. Highly recommended!',
+    rideType: 'Honda Activa 125',
   },
 ];
 
@@ -158,25 +148,25 @@ export const faqs: FAQItem[] = [
   {
     id: 'q1',
     category: 'booking',
-    question: 'How do I book a scooter or bike with Urban Wheels?',
-    answer: 'Simply use our booking form above! Input your pickup hub location, specify rental start date and time, choose your rental duration (in days), and select the scooter or bike of your choice. You can confirm your rental instantly.',
+    question: 'How do I book a Honda Activa 125 with Urban Wheels?',
+    answer: 'Simply use our booking form above! Select your plan (Day Rental or 24-Hour Special Package), enter your Name, Mobile Number, Pickup Location, Date, and Time, then click "Book Scooter Now". You will be shown a confirmation page with your Booking ID instantly—no tedious OTP or verification screens required!',
   },
   {
     id: 'q2',
     category: 'rental',
-    question: 'What documents are required to rent a two-wheeler?',
-    answer: 'To rent a scooty or bike, you must present a valid Indian Driving License (DL) authorizing geared or gearless two-wheelers, along with a Government ID (such as an Aadhaar Card). International guests must share their International Driving Permit.',
+    question: 'What documents are required to rent a scooter?',
+    answer: 'To collect your Honda Activa 125, you must present a valid Indian Driving License (DL) authorizing gearless two-wheelers, along with a Government ID (such as an Aadhaar Card). valid DL & Aadhaar are verified in person at collection.',
   },
   {
     id: 'q3',
     category: 'safety',
     question: 'Are helmets and safety gear included in the rental price?',
-    answer: 'Yes! We provide up to two clean, sanitized, safety-certified helmets and a basic toolkit with every rental vehicle. Your safety is our absolute priority.',
+    answer: 'Yes! We provide up to two clean, sanitized, safety-certified helmets and a basic emergency toolkit with every rental vehicle at zero additional cost.',
   },
   {
     id: 'q4',
     category: 'payment',
     question: 'What are your payment terms and security deposit rules?',
-    answer: 'We support all major payment options including UPI (Google Pay, PhonePe, Paytm), credit cards, and cash. There is a small fully-refundable security deposit of ₹1,000 collected during vehicle pickup which is returned instantly on drop-off.',
+    answer: 'We support all major payment options including UPI (Google Pay, PhonePe, Paytm), credit/debit cards, and cash. There is no online prepayment required—simply pay when you pick up your scooter at our Joshiyara hub.',
   },
 ];

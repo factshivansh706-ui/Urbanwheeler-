@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bike, Car, Flame, Users, Clock, Leaf, ShieldCheck, CreditCard, Calendar } from 'lucide-react';
+import { Bike, Flame, Users, Clock, Leaf, ShieldCheck, CreditCard, Check, Sparkles } from 'lucide-react';
 import { RideOption, BookingState } from '../types';
 import { rideOptions } from '../data';
 import { motion } from 'motion/react';
@@ -11,205 +11,141 @@ interface RideSelectorProps {
   onConfirm: () => void;
 }
 
-// Distance computation helpers based on local Uttarkashi landmarks
-const calculateDistanceKm = (pickup: string, destination: string): number => {
-  if (!pickup || !destination) return 2.5; // default fallback
-  if (pickup === destination) return 1.5;
-
-  const names = [pickup.toLowerCase(), destination.toLowerCase()];
-  
-  // Gangotri Temple (long distance pilgrims)
-  if (names.some(n => n.includes('gangotri'))) {
-    return 100.5;
-  }
-  
-  // Dehradun Jolly Grant Airport
-  if (names.some(n => n.includes('jolly grant') || n.includes('airport'))) {
-    return 172.0;
-  }
-
-  // Chinyalisaur
-  if (names.some(n => n.includes('chinyalisaur') || n.includes('helipad'))) {
-    return 34.8;
-  }
-
-  // Maneri Dam
-  if (names.some(n => n.includes('maneri'))) {
-    return 14.5;
-  }
-
-  // Kashi Vishwanath Temple
-  if (names.some(n => n.includes('kashi') || n.includes('vishwanath'))) {
-    return 2.2;
-  }
-
-  return 3.5; // default avg city ride
-};
-
 export default function RideSelector({
   booking,
   selectedRideId,
   onSelect,
   onConfirm,
 }: RideSelectorProps) {
-  const distance = calculateDistanceKm(booking.pickup, booking.destination);
-  const isOutstation = distance > 40;
-
-  // Calculate estimated duration based on mountain average speeds (approx 30km/h in hills + buffer)
-  const estDurationMinutes = Math.round(distance * 2.0 + (isOutstation ? 35 : 5));
-
-  // Calculate dynamic fare
-  const getEstimatedFare = (option: RideOption): number => {
-    if (option.category === 'rental') {
-      // Rental daily rate multiplied by duration (booking.passengers tracks days in rental mode)
-      return Math.round(option.basePrice * booking.passengers);
-    } else {
-      // Taxi option
-      const perKmPrice = option.pricePerKm || 15;
-      let fare = option.basePrice + (distance * perKmPrice);
-      
-      // Dynamic adjustments for remote high mountain roads
-      if (distance > 80) {
-        fare *= 0.95; // volume discount for long distance pilgrimages
-      }
-      return Math.round(fare);
-    }
-  };
-
-  // Get icon based on ride type
-  const getRideIcon = (type: string, size = 24) => {
-    switch (type) {
-      case 'bike_rental':
-        return <Bike className="text-yellow-600 animate-pulse" size={size} />;
-      case 'scooter_rental':
-        return <Bike className="text-zinc-600" size={size} />;
-      case 'taxi_local':
-        return <Car className="text-zinc-500" size={size} />;
-      case 'taxi_sedan':
-        return <Car className="text-yellow-600" size={size} />;
-      case 'taxi_suv':
-        return <Car className="text-zinc-800" size={size} />;
-      case 'outstation':
-        return (
-          <div className="relative flex items-center">
-            <Car className="text-yellow-600" size={size} />
-            <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[7px] font-extrabold px-1 rounded-full">
-              TOUR
-            </span>
-          </div>
-        );
-      default:
-        return <Car className="text-zinc-500" size={size} />;
-    }
-  };
-
-  // Filter fleet based on booking's active service type
-  const filteredOptions = rideOptions.filter(o => o.category === booking.serviceType);
+  // Duration of rental in days (using booking.passengers as days)
+  const durationDays = booking.passengers || 1;
 
   return (
     <div id="fleet" className="glass-card rounded-2xl p-5 md:p-6 shadow-2xl mt-6 border-white/60 relative z-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-6">
         <div>
-          <span className="text-xs font-black tracking-widest text-yellow-600 uppercase">
-            Available {booking.serviceType === 'rental' ? 'Two-Wheeler Fleet' : 'Taxi Cabs'}
+          <span className="text-xs font-black tracking-widest text-yellow-600 uppercase flex items-center gap-1">
+            <Sparkles className="w-3 h-3 fill-yellow-500 text-yellow-500 animate-pulse" />
+            <span>Exclusive Ride Options</span>
           </span>
           <h3 className="text-xl font-black text-zinc-900 tracking-tight mt-0.5">
-            {booking.serviceType === 'rental' 
-              ? 'Select Your Rental Bike / Scooter' 
-              : 'Choose Your Himalayan Cab Comfort'}
+            Honda Activa 125 Rental Plans
           </h3>
           <p className="text-xs text-zinc-500 mt-1 font-semibold">
-            {booking.serviceType === 'rental' ? (
-              <span>Duration: <span className="font-bold text-zinc-800">{booking.passengers} Days</span> self-drive tour</span>
-            ) : (
-              <span>Distance: <span className="font-bold text-zinc-800">{distance.toFixed(1)} km</span> • Est. Travel Time: <span className="font-bold text-zinc-800">{estDurationMinutes} mins</span></span>
-            )}
+            Duration: <span className="font-bold text-zinc-800">{durationDays} {durationDays === 1 ? 'Day' : 'Days'}</span> self-drive exploration
           </p>
         </div>
 
-        {/* Info label about price transparency */}
-        <div className="hidden sm:flex items-center gap-2 glass-input rounded-xl px-3.5 py-2 text-xs text-zinc-600 border-white/50">
+        <div className="flex items-center gap-2 glass-input rounded-xl px-3.5 py-2 text-xs text-zinc-600 border-white/50">
           <ShieldCheck className="w-4 h-4 text-emerald-600" />
-          <span>Transparent rates. Zero mountain peak pricing.</span>
+          <span>No extra hidden fees. Dual sanitized helmets included.</span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredOptions.map((option) => {
+      {/* Two Premium Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {rideOptions.map((option) => {
           const isSelected = selectedRideId === option.id;
-          const fare = getEstimatedFare(option);
+          const dailyRate = option.basePrice;
+          const totalCost = dailyRate * durationDays;
+
+          const isSpecial = option.id === 'activa_24h_special';
 
           return (
             <div
               key={option.id}
               onClick={() => onSelect(option.id)}
-              className={`relative rounded-xl border p-4 flex flex-col justify-between transition-all duration-300 ${
+              className={`relative rounded-2xl border p-5 flex flex-col justify-between transition-all duration-300 ${
                 isSelected
-                  ? 'border-yellow-400 bg-yellow-400/15 ring-2 ring-yellow-400/20 shadow-md shadow-yellow-400/5 cursor-pointer'
-                  : 'border-white/40 hover:border-zinc-300 bg-white/40 hover:shadow-sm cursor-pointer'
+                  ? 'border-yellow-400 bg-yellow-400/10 ring-2 ring-yellow-400/20 shadow-xl cursor-pointer scale-[1.01]'
+                  : 'border-white/50 hover:border-zinc-300 bg-white/40 hover:bg-white/60 hover:shadow-md cursor-pointer'
               }`}
             >
               {/* Badges */}
-              <div className="absolute top-3 right-3 flex gap-1.5 items-center">
-                {option.popular && (
-                  <span className="bg-yellow-400 text-black text-[9px] font-black px-2 py-0.5 rounded-full tracking-wide uppercase flex items-center gap-0.5">
+              <div className="absolute top-4 right-4 flex gap-1.5 items-center">
+                {isSpecial && (
+                  <span className="bg-yellow-400 text-black text-[9px] font-black px-2 py-0.5 rounded-full tracking-wider uppercase flex items-center gap-0.5 shadow-sm">
                     <Flame className="w-2.5 h-2.5 fill-black" />
-                    <span>Highly Rated</span>
+                    <span>Best Value</span>
                   </span>
                 )}
-                {option.category === 'rental' && (
-                  <span className="bg-emerald-100 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
-                    <Leaf className="w-2.5 h-2.5" />
-                    <span>Self-Drive</span>
-                  </span>
-                )}
+                <span className="bg-emerald-50 text-emerald-700 border border-emerald-100 text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-0.5">
+                  <Leaf className="w-2.5 h-2.5" />
+                  <span>Self-Drive</span>
+                </span>
               </div>
 
               {/* Ride info header */}
-              <div className="flex gap-3.5 items-start">
-                <div className="w-12 h-12 rounded-xl bg-white/80 border border-slate-200/50 flex items-center justify-center shrink-0 shadow-sm">
-                  {getRideIcon(option.type, 26)}
+              <div>
+                <div className="flex gap-3.5 items-start">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 shadow-sm ${isSelected ? 'bg-yellow-400 text-black' : 'bg-white/80 border border-slate-200/50 text-zinc-500'}`}>
+                    <Bike className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-extrabold text-sm text-zinc-900">
+                      {option.name}
+                    </h4>
+                    <p className="text-[11px] text-zinc-500 leading-normal mt-1 pr-14">
+                      {option.description}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-extrabold text-sm text-zinc-900 flex items-center gap-1.5">
-                    {option.name}
-                  </h4>
-                  <p className="text-[11px] text-zinc-500 leading-normal mt-0.5 max-w-[150px] sm:max-w-none">
-                    {option.description}
-                  </p>
+
+                {/* Features Checklist */}
+                <div className="mt-4 space-y-2">
+                  <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-700">
+                    <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                    <span>Premium Honda Activa 125 CC Engine</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-700">
+                    <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                    <span>2 Sanitized Helmets Included</span>
+                  </div>
+                  {isSpecial ? (
+                    <>
+                      <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-700">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                        <span>24 Hours Full Flexibility (Overnight)</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-700">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                        <span>Free Roadside Assistance across Uttarkashi</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-700">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                        <span>Daytime Exploration (Return by 8 PM)</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[11px] font-bold text-zinc-700">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                        <span>Perfect for local temple & ghat visits</span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
 
-              {/* Passenger and Time indicators */}
-              <div className="flex items-center gap-3.5 text-[10px] text-zinc-500 font-bold tracking-wider mt-4 pt-3 border-t border-slate-100">
-                <span className="flex items-center gap-1">
-                  <Users className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Max {option.capacity} {option.category === 'rental' ? 'Riders' : 'Passengers'}</span>
-                </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>{option.category === 'rental' ? 'Instantly Ready' : `Pickup in ${option.etaMinutes} mins`}</span>
-                </span>
-              </div>
-
-              {/* Price footer */}
-              <div className="flex items-end justify-between mt-4">
+              {/* Price & selection footer */}
+              <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
                 <div>
-                  <span className="block text-[8px] font-black tracking-widest text-zinc-400 uppercase">
-                    {option.category === 'rental' ? 'Total Rental Cost' : 'Estimated Base Fare'}
+                  <span className="block text-[8px] font-black tracking-widest text-zinc-400 uppercase leading-none">
+                    Plan Price
                   </span>
-                  <span className="text-lg font-black text-zinc-900">
-                    ₹{fare}
-                    {option.category === 'rental' && <span className="text-[10px] font-semibold text-zinc-500"> / {booking.passengers} Days</span>}
-                  </span>
+                  <div className="flex items-baseline gap-1 mt-1">
+                    <span className="text-xl font-black text-zinc-900">₹{dailyRate}</span>
+                    <span className="text-[10px] text-zinc-500 font-semibold">/ day</span>
+                  </div>
                 </div>
 
-                <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
-                  isSelected
-                    ? 'bg-yellow-400 border-yellow-400 text-black shadow'
-                    : 'border-zinc-300 bg-transparent'
-                }`}>
-                  {isSelected && <span className="text-[10px] font-black">✓</span>}
+                <div className="text-right">
+                  <span className="block text-[8px] font-black tracking-widest text-zinc-400 uppercase leading-none">
+                    Total Cost ({durationDays} {durationDays === 1 ? 'Day' : 'Days'})
+                  </span>
+                  <span className="text-base font-black text-zinc-900 mt-1 block">
+                    ₹{totalCost}
+                  </span>
                 </div>
               </div>
             </div>
@@ -217,25 +153,23 @@ export default function RideSelector({
         })}
       </div>
 
-      {/* Confirmation Overlay Trigger Card */}
+      {/* Confirmation Button Footer */}
       {selectedRideId && (
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 p-4 rounded-xl glass-input border border-white/60 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg"
+          className="mt-6 p-4 rounded-xl bg-zinc-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl border border-zinc-800"
         >
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center text-yellow-600 border border-yellow-200 shrink-0 shadow-sm">
+            <div className="w-10 h-10 rounded-lg bg-yellow-400 text-black flex items-center justify-center font-bold shrink-0 shadow-sm">
               <CreditCard className="w-5 h-5" />
             </div>
             <div>
-              <span className="block text-[10px] font-black text-zinc-400 uppercase tracking-widest">
-                Payment Selection
+              <span className="block text-[10px] font-black text-yellow-400 uppercase tracking-widest">
+                No Prepayment Required
               </span>
-              <span className="text-xs font-bold text-zinc-600">
-                {booking.serviceType === 'rental' 
-                  ? 'Self-Drive Security Deposit: ₹1,000 (Fully Refundable)' 
-                  : 'Cashless Ride Booking • Pay after journey ends'}
+              <span className="text-xs font-bold text-zinc-300">
+                Zero security deposit online! Pay only when collecting your Honda Activa 125.
               </span>
             </div>
           </div>
@@ -243,9 +177,9 @@ export default function RideSelector({
           <button
             id="confirm-booking-btn"
             onClick={onConfirm}
-            className="w-full sm:w-auto btn-yellow-premium px-6 py-3 rounded-xl shadow-lg transition-all text-sm tracking-tight flex items-center justify-center gap-1.5 cursor-pointer uppercase"
+            className="w-full sm:w-auto btn-yellow-premium px-8 py-3 rounded-xl shadow-lg transition-all text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
-            <span>Confirm {booking.serviceType === 'rental' ? 'Rental Booking' : 'Taxi Ride'}</span>
+            <span>Confirm Booking Now</span>
             <span>→</span>
           </button>
         </motion.div>

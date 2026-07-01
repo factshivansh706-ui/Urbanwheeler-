@@ -147,20 +147,44 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
 
   return (
     <div className="glass-card rounded-2xl p-5 md:p-6 shadow-2xl relative border-white/60">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
-        <h3 className="text-lg font-black text-zinc-900 tracking-tight flex items-center gap-2">
-          <span className="w-2.5 h-5 bg-yellow-400 rounded-full inline-block" />
-          Plan Your Scooter / Bike Rental
+      <div className="mb-4 rounded-xl overflow-hidden border border-zinc-200/50 bg-white/40 shadow-sm relative group">
+        <img
+          src="/input_file_2.png"
+          alt="Honda Activa 125"
+          referrerPolicy="no-referrer"
+          className="w-full h-36 object-cover object-center group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-3.5">
+          <div className="flex items-center justify-between">
+            <div>
+              <span className="bg-yellow-400 text-black text-[9px] font-black px-2 py-0.5 rounded-md tracking-wider uppercase">
+                EXCLUSIVE FLEET
+              </span>
+              <h4 className="text-white text-base font-black tracking-tight mt-1">
+                Honda Activa 125
+              </h4>
+            </div>
+            <span className="text-zinc-300 text-[10px] font-semibold bg-zinc-900/60 px-2 py-1 rounded-md backdrop-blur-sm border border-white/10">
+              Plate: UK10T A1135
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <h3 className="text-base font-black text-zinc-900 tracking-tight flex items-center gap-2">
+          <span className="w-2.5 h-4 bg-yellow-400 rounded-full inline-block animate-pulse" />
+          Rent Your Honda Activa 125
         </h3>
       </div>
 
       <div className="space-y-4">
         {/* Customer Details */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="flex items-center glass-input rounded-xl px-3.5 py-3 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
-            <User className="w-5 h-5 text-yellow-500 shrink-0 mr-3" />
+          <div className="flex items-center glass-input rounded-xl px-3.5 py-2.5 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
+            <User className="w-4.5 h-4.5 text-yellow-500 shrink-0 mr-3" />
             <div className="flex-1">
-              <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+              <label className="block text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none">
                 Your Name
               </label>
               <input
@@ -169,15 +193,15 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
                 value={booking.customerName}
                 onChange={(e) => onChange({ customerName: e.target.value })}
                 placeholder="Enter your full name"
-                className="w-full bg-transparent border-0 p-0 text-zinc-800 text-sm font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
+                className="w-full bg-transparent border-0 p-0 text-zinc-800 text-xs font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
               />
             </div>
           </div>
 
-          <div className="flex items-center glass-input rounded-xl px-3.5 py-3 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
-            <Phone className="w-5 h-5 text-yellow-500 shrink-0 mr-3" />
+          <div className="flex items-center glass-input rounded-xl px-3.5 py-2.5 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
+            <Phone className="w-4.5 h-4.5 text-yellow-500 shrink-0 mr-3" />
             <div className="flex-1">
-              <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+              <label className="block text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none">
                 Mobile Number
               </label>
               <input
@@ -186,23 +210,20 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
                 value={booking.customerMobile}
                 onChange={(e) => onChange({ customerMobile: e.target.value })}
                 placeholder="Enter 10-digit number"
-                className="w-full bg-transparent border-0 p-0 text-zinc-800 text-sm font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
+                className="w-full bg-transparent border-0 p-0 text-zinc-800 text-xs font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
               />
             </div>
           </div>
         </div>
 
-        {/* Pickup & Destination block with relative line */}
+        {/* Pickup block only */}
         <div className="relative">
-          {/* Vertical connecting line */}
-          <div className="absolute left-[21px] top-8 bottom-8 w-[2px] border-l border-dashed border-zinc-300 pointer-events-none" />
-
           {/* Pickup Field */}
           <div ref={pickupRef} className="relative">
-            <div className="flex items-center glass-input rounded-xl px-3.5 py-3 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
-              <MapPin className="w-5 h-5 text-yellow-500 shrink-0 mr-3" />
+            <div className="flex items-center glass-input rounded-xl px-3.5 py-2.5 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
+              <MapPin className="w-4.5 h-4.5 text-yellow-500 shrink-0 mr-3" />
               <div className="flex-1">
-                <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+                <label className="block text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none">
                   Pickup Hub / Location
                 </label>
                 <input
@@ -212,7 +233,7 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
                   onChange={(e) => onChange({ pickup: e.target.value, pickupLatLng: null })}
                   onFocus={() => setPickupFocus(true)}
                   placeholder="Enter pickup address or hotel in Uttarkashi..."
-                  className="w-full bg-transparent border-0 p-0 text-zinc-800 text-sm font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
+                  className="w-full bg-transparent border-0 p-0 text-zinc-800 text-xs font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
                 />
               </div>
               <button
@@ -224,9 +245,9 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
                 title="Detect Current Location"
               >
                 {isDetecting ? (
-                  <Loader2 className="w-4 h-4 animate-spin text-yellow-500" />
+                  <Loader2 className="w-3.5 h-3.5 animate-spin text-yellow-500" />
                 ) : (
-                  <Navigation className="w-4 h-4 text-yellow-500" />
+                  <Navigation className="w-3.5 h-3.5 text-yellow-500 animate-pulse" />
                 )}
               </button>
             </div>
@@ -272,66 +293,40 @@ export default function BookingForm({ booking, onChange, onSearch }: BookingForm
               )}
             </AnimatePresence>
           </div>
+        </div>
 
-          {/* Swap Button */}
-          <div className="absolute right-4 top-[50px] -translate-y-1/2 z-10">
+        {/* Premium Plan Selector Segmented Toggle */}
+        <div className="bg-slate-100/50 p-1.5 rounded-2xl border border-zinc-200/40">
+          <label className="block text-[9px] font-bold text-zinc-400 uppercase tracking-widest px-2.5 mb-1.5 leading-none mt-1">
+            Select Rental Plan
+          </label>
+          <div className="grid grid-cols-2 gap-1.5">
             <button
               type="button"
-              id="swap-btn"
-              onClick={handleSwap}
-              className="bg-white/80 hover:bg-white text-zinc-700 border border-zinc-250 hover:text-black p-2.5 rounded-full shadow-md transition-transform hover:rotate-180 duration-300 cursor-pointer flex items-center justify-center"
-              title="Swap Locations"
+              id="plan-day-rental-btn"
+              onClick={() => onChange({ selectedRideId: 'activa_day_rental', destination: 'Day Rental (₹800)' })}
+              className={`py-2.5 px-3 rounded-xl text-center cursor-pointer transition-all ${
+                booking.selectedRideId === 'activa_day_rental'
+                  ? 'bg-zinc-900 text-white font-black shadow-md'
+                  : 'bg-white/60 hover:bg-white text-zinc-600 font-bold hover:text-zinc-900'
+              }`}
             >
-              <ArrowRightLeft className="w-4 h-4" />
+              <span className="block text-xs uppercase tracking-wider">Day Rental</span>
+              <span className={`block text-xs mt-0.5 ${booking.selectedRideId === 'activa_day_rental' ? 'text-yellow-400' : 'text-yellow-600'}`}>₹800</span>
             </button>
-          </div>
-
-          {/* Destination Field */}
-          <div ref={destRef} className="relative mt-3">
-            <div className="flex items-center glass-input rounded-xl px-3.5 py-3 focus-within:border-yellow-400 focus-within:ring-1 focus-within:ring-yellow-400 transition-all">
-              <MapPin className="w-5 h-5 text-zinc-400 shrink-0 mr-3" />
-              <div className="flex-1">
-                <label className="block text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
-                  Destination / Drop-off
-                </label>
-                <input
-                  type="text"
-                  id="input-destination"
-                  value={booking.destination}
-                  onChange={(e) => onChange({ destination: e.target.value, destinationLatLng: null })}
-                  onFocus={() => setDestFocus(true)}
-                  placeholder="Where do you want to explore?"
-                  className="w-full bg-transparent border-0 p-0 text-zinc-800 text-sm font-semibold focus:ring-0 focus:outline-none placeholder-zinc-400 mt-0.5"
-                />
-              </div>
-            </div>
-
-            {/* Suggestions dropdown */}
-            <AnimatePresence>
-              {destFocus && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute left-0 right-0 mt-2 glass-premium border border-white/60 rounded-xl shadow-2xl z-20 overflow-hidden max-h-60 overflow-y-auto"
-                >
-                  <div className="px-3.5 py-1.5 text-[10px] font-bold text-zinc-400 bg-white/20 tracking-wider">
-                    POPULAR DESTINATIONS
-                  </div>
-                  {popularDestinations.map((suggestion) => (
-                    <button
-                      key={suggestion.name}
-                      type="button"
-                      onClick={() => selectDestination(suggestion)}
-                      className="w-full px-4 py-3 text-left hover:bg-yellow-400/10 border-b border-white/40 last:border-0 transition-colors flex flex-col"
-                    >
-                      <span className="text-xs font-bold text-zinc-800">{suggestion.name}</span>
-                      <span className="text-[10px] text-zinc-500 truncate">{suggestion.description}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <button
+              type="button"
+              id="plan-24h-special-btn"
+              onClick={() => onChange({ selectedRideId: 'activa_24h_special', destination: '24H Special Package (₹1000)' })}
+              className={`py-2.5 px-3 rounded-xl text-center cursor-pointer transition-all ${
+                booking.selectedRideId === 'activa_24h_special'
+                  ? 'bg-zinc-900 text-white font-black shadow-md'
+                  : 'bg-white/60 hover:bg-white text-zinc-600 font-bold hover:text-zinc-900'
+              }`}
+            >
+              <span className="block text-xs uppercase tracking-wider">24H Special</span>
+              <span className={`block text-xs mt-0.5 ${booking.selectedRideId === 'activa_24h_special' ? 'text-yellow-400' : 'text-yellow-600'}`}>₹1000</span>
+            </button>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 {
   "name": "Urban Wheels",
-  "description": "Book reliable taxis or rent premium two-wheelers quickly, safely, and affordably across Uttarkashi, Uttarakhand. Premium mobility platform inspired by Rapido and Uber.",
+  "description": "Rent premium Honda Activa 125 scooties quickly, safely, and affordably across Uttarkashi, Uttarakhand. Select a plan and book instantly without any tedious verification or OTP steps.",
   "requestFramePermissions": ["geolocation"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

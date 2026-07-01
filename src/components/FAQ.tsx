@@ -36,7 +36,7 @@ export default function FAQ() {
             Got Questions? We Have Answers
           </h2>
           <p className="text-sm text-zinc-600 mt-3 font-medium">
-            Find quick answers regarding shared seats, payment wallets, SOS, and cancellation guidelines.
+            Find quick answers regarding our self-drive scooter rentals, document requirements, roadside help, and pickup locations.
           </p>
         </div>
 

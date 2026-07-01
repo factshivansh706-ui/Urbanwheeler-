@@ -18,13 +18,13 @@ export default function App() {
   const [booking, setBooking] = useState<BookingState>({
     pickup: "Santri's CSC, Joshiyara",
     pickupLatLng: [30.7251, 78.4370],
-    destination: 'Kashi Vishwanath Temple',
+    destination: 'Day Rental (₹800)',
     destinationLatLng: [30.7268, 78.4335],
     date: new Date(Date.now() + 86400000).toISOString().split('T')[0], // Tomorrow
     time: '09:30',
     serviceType: 'rental',
     passengers: 1,
-    selectedRideId: 'scooter_rental',
+    selectedRideId: 'activa_day_rental',
     customerName: '',
     customerMobile: '',
   });
